@@ -1,0 +1,13 @@
+.pytest_cache
+second
+__pycache__
+dataset
+.env
+mlartifacts
+mlruns
+.pyc
+.Rproj.user
+.vscode
+*.pyc
+.streamlit
+secrets.toml

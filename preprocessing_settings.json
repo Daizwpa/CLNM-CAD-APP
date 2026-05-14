@@ -1,0 +1,86 @@
+{
+    
+    "target": [
+        "N"
+    ],
+    
+    "test_size":0.30,
+    "shuffle": true,
+    "inputing_max_iter":25,
+    
+    "possible_targets":[
+        "RISK_AJCC8",
+        "RISQUE_RECIDIVE_ATA",
+        "RISK_DYNAMIQ",
+        "M",
+        "META"
+    ],
+
+    "ignore_columns":[
+        "TABAC_STAT",
+        "ALCOOL_STATUS",
+        "TYPE_HISTOLOGIQUE",
+        "MALADIE_CV_CONNUE",
+        "ETE",
+        "DERNIERE_TSH",
+        "AVANT_DERNIERE_TSH",
+        "AGE",
+        "RISK_DYNAMIQ",
+        "RISK_AJCC8",
+        "M",
+        "MALADIE_CV",
+        "Interval_DOSE_LEVOTHYROX",
+        "Interval_AVANT_DERNIERE_TSH",
+        "Interval_Derniere_TSH"
+    ],
+
+    "box_plot_clipOutliers":[
+
+    ],
+
+    "nominal_columns" : {
+        "TYPE_HISTOLOGIQUE":[ "NIFT", "Tumeur vesiculaire à potentiel de malignité incertain", "Papillaire", "Vésiculaire", "Peu différencié", "Anaplasique", "Medullaire"],
+        "MALADIE_CV_CONNUE": [ "Non", "cardiopathie ischémique", "Insuffisance cardiaque", "Maladie rythmique", "AVC", "AOMI", "Maladie rythmique+ IC", "TVP"],
+        "TABAC_STAT":[ "Jamais", "Actif", "Ancien"],
+        "ALCOOL_STATUS":[ "Jamais", "Actif", "Ancien"],
+        "RISK_DYNAMIQ":  ["Excellente réponse","Réponse indeterminée","Réponse biologique incomplète","Réponse radiologique incomplète"]
+    },
+
+    "ordinal_columns":{
+        "RISQUE_RECIDIVE_ATA": ["Faible", "Intermédiaire", "Elevé"],
+        "T": ["T1", "T2", "T3", "T4"],
+        "ETE": ["Non", "Minime", "grosse"],
+        "RISK_AJCC8": ["Stade I", "Stade II","Stade III","Stade IVA","Stade IVB","Stade IVC"],
+        "AJCC8": ["Stade I", "Stade II","Stade III","Stade IV"],
+        "Interval_Derniere_TSH": ["<0.1", "0.1-0.5", "0.5-2", ">2"],
+        "Interval_AVANT_DERNIERE_TSH": ["<0.1", "0.1-0.5", "0.5-2", ">2"],
+        "Interval_DOSE_LEVOTHYROX": ["100≥", "100-200", ">200"],
+        "DOSE_CUMULEE_IODE": ["0","≤30", "30-150",">150"]
+
+    },
+
+    "binary_columns":[
+        "SEXE",
+        "ATCD_PER_KC",
+        "MCV_FAM",
+        "M",
+        "INVASION_VASCULAIRE",
+        "MULTIFOCALITE",
+        "META",
+        "MALADIE_CV",
+        "Tabagisme",
+        "Alcoolisme",
+        "Papillaire",
+        "Medullaire",
+        "Vésiculaire",
+        "b_ETE"
+    ],
+
+    "numerical_columns":[
+        "AGE_AU_DIAGNOSTIC",
+        "AGE",
+        "DOSE_LEVOTHYROX",
+        "DERNIERE_TSH",
+        "AVANT_DERNIERE_TSH"
+    ]
+}
