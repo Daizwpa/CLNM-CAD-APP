@@ -17,10 +17,10 @@ def page():
 
     st.markdown("### 📥 Enter patient clinical information:")
     
-    if "patient" not in st.session_state:
-        st.session_state.patient = PatientModel()
+    #if "patient" not in st.session_state:
+       # st.session_state.patient = PatientModel()
 
-    patient = st.session_state.patient
+    patient = PatientModel()
 
     col1, col2 = st.columns(2)
 

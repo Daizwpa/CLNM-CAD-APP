@@ -1,10 +1,13 @@
 from Core.Model import PatientModel
 import streamlit as st
-from Core.core import stream_text, load_models
+from Core.core import stream_text, load_models, append_rows_and_overwrite, connect_to_Google_drive
 import time
 import pandas as pd
 import shap
 import matplotlib.pyplot as plt
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+
 
 def diagnosis(patient: PatientModel):
     processor, model, explainer = load_models()
@@ -223,7 +226,15 @@ def diagnosis(patient: PatientModel):
         shap.plots.waterfall(shap_values=se[0], max_display=25, show=False)
 
         st.pyplot(fig)
+        # 3. Build credentials directly from the file
+        #creds = service_account.Credentials.from_service_account_file(
+        #    st.secrets["gcp_service_account"],
+        #    scopes= ['googleapis.com']
+        #)
 
+        # 4. Initialize the Drive API service safely without token refresh loops
+        #service = build('drive', 'v3', credentials=creds)
+        #append_rows_and_overwrite(file_id="11Nces3B8tll9GadYyviN5SFZ8HeKHn_cWX3x-ZKcxAY", new_data_dict=summary, service=service)
 
         st.caption(
             """
