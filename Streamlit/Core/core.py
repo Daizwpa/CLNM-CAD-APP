@@ -9,6 +9,7 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 from googleapiclient.http import MediaIoBaseUpload
+from streamlit_gsheets import GSheetsConnection
 
 def connect_to_Google_drive(readonly=True):
     # Authenticate using service account info from secrets
@@ -28,49 +29,20 @@ def stream_text(text):
         time.sleep(0.03)
 
 
-def append_rows_and_overwrite(file_id, new_data_dict, service):
-    # 1. Export Google Sheet as an Excel file binary stream
-    request = service.files().export_media(
-        fileId=file_id,
-        mimeType='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    )
-    
-    file_stream = io.BytesIO()
-    downloader = MediaIoBaseDownload(file_stream, request)
-    
-    done = False
-    while not done:
-        _, done = downloader.next_chunk()
-    
-    # 2. Read into pandas DataFrame
-    file_stream.seek(0)
-    df_existing = pd.read_excel(file_stream, engine='openpyxl')
+def append_rows_and_overwrite(dataToAdd, sheet="Sheet1"):
+        conn = st.connection("gsheets", type=GSheetsConnection)
+        df = conn.read(worksheet=sheet, ttl=0)
+        df = pd.concat( [df,dataToAdd.set_index("Feature").T])
+        conn.update(worksheet="Sheet1", data=df)
+        st.toast(
+             """
+             Data saved successfully. Thank you for contributing to the continuous
+            improvement of our services.""",
+            icon="😍",
+            duration="long"
+        )
+        conn.close()
 
-    # 3. Append your new data rows
-    df_new = pd.DataFrame(new_data_dict)
-    df_updated = pd.concat([df_existing, df_new], ignore_index=True)
-
-    # 4. Save the updated DataFrame back into memory buffer
-    output_stream = io.BytesIO()
-    with pd.ExcelWriter(output_stream, engine='openpyxl') as writer:
-        df_updated.to_excel(writer, index=False)
-    output_stream.seek(0)
-
-    # 5. Overwrite the file on Google Drive
-    media = MediaIoBaseUpload(
-        output_stream, 
-        mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 
-        resumable=True
-    )
-    
-    # NOTE: update() converts it back into a native Google Sheet automatically
-    updated_file = service.files().update(
-        fileId=file_id,
-        media_body=media
-    ).execute()
-    
-    print(f"Successfully updated Google Sheet ID: {file_id}")
-    return updated_file
 
 def load_pickle(file_id):
     service = connect_to_Google_drive()

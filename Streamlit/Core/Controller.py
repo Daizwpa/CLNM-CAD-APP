@@ -5,9 +5,12 @@ import time
 import pandas as pd
 import shap
 import matplotlib.pyplot as plt
-from google.oauth2 import service_account
-from googleapiclient.discovery import build
 
+@st.fragment
+def save_button_container(df):
+    with st.container(horizontal=True, horizontal_alignment="right"):
+                if st.button("Save"):
+                    append_rows_and_overwrite(df)
 
 def diagnosis(patient: PatientModel):
     processor, model, explainer = load_models()
@@ -206,13 +209,14 @@ def diagnosis(patient: PatientModel):
                     f"{patient.levothyrox:.1f} µg"
                 ]
             })
-
+            summary["Value"] = summary["Value"].astype(str)
             st.dataframe(
                 summary,
                 width="stretch",
-                
                 hide_index=True
             )
+            save_button_container(summary)
+
 
         se = explainer(transformed_data)
 
@@ -226,15 +230,7 @@ def diagnosis(patient: PatientModel):
         shap.plots.waterfall(shap_values=se[0], max_display=25, show=False)
 
         st.pyplot(fig)
-        # 3. Build credentials directly from the file
-        #creds = service_account.Credentials.from_service_account_file(
-        #    st.secrets["gcp_service_account"],
-        #    scopes= ['googleapis.com']
-        #)
-
-        # 4. Initialize the Drive API service safely without token refresh loops
-        #service = build('drive', 'v3', credentials=creds)
-        #append_rows_and_overwrite(file_id="11Nces3B8tll9GadYyviN5SFZ8HeKHn_cWX3x-ZKcxAY", new_data_dict=summary, service=service)
+        
 
         st.caption(
             """
@@ -243,3 +239,6 @@ def diagnosis(patient: PatientModel):
             clinical judgement.
             """
         )
+
+
+
