@@ -3,6 +3,15 @@ import streamlit as st
 from Core.Model import PatientModel
 from Core.Controller import diagnosis
 
+st.set_page_config(initial_sidebar_state="collapsed")
+
+st.markdown("""
+<style>
+    [data-testid="stSidebarNav"] {
+        display: none;
+    }
+</style>
+""", unsafe_allow_html=True)
 
 def page():
     """
@@ -172,4 +181,17 @@ def page():
 
 
 if __name__ == "__main__":
+    if not st.user.is_logged_in:
+        st.switch_page("app.py")
+
+    sidebar_container = st.sidebar.container()
+
+    with sidebar_container:
+        st.write(f"Welecom Back, {st.user.name}!")
+        st.image(st.user.picture)
+        if st.sidebar.button("Sign Out"):
+            st.logout()
+            st.switch_page("app.py")
+
     page()
+
