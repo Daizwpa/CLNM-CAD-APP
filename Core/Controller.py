@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 
 @st.fragment
 def save_button_container(df):
+    df["user"] = st.user.name
     with st.container(horizontal=True, horizontal_alignment="right"):
                 if st.button("Save"):
                     append_rows_and_overwrite(df)
