@@ -98,7 +98,7 @@ pytz==2026.2
 PyYAML==6.0.3
 referencing==0.37.0
 requests==2.34.0
-requests-oauthlib==2.0.0
+requests-oauthlib==1.4.0
 rpds-py==0.30.0
 scikit-learn==1.7.2
 scipy==1.15.2
