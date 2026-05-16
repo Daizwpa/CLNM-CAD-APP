@@ -1,6 +1,6 @@
-from streamlit.Core.Model import PatientModel
+from Core.Model import PatientModel
 import streamlit as st
-from streamlit.Core.core import stream_text, load_models, append_rows_and_overwrite, connect_to_Google_drive
+from Core.core import stream_text, load_models, append_rows_and_overwrite, connect_to_Google_drive
 import time
 import pandas as pd
 import shap
