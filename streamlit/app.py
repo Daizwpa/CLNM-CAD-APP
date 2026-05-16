@@ -43,5 +43,5 @@ if __name__ == "__main__":
 
 
     if st.user.is_logged_in:
-        st.switch_page("Inference.py")
+        st.switch_page("pages/Inference.py")
     main()
