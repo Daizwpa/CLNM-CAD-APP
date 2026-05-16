@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 @st.fragment
 def save_button_container(df):
-    df["user"] = st.user.name
+    
     with st.container(horizontal=True, horizontal_alignment="right"):
                 if st.button("Save"):
                     append_rows_and_overwrite(df)
@@ -188,7 +188,8 @@ def diagnosis(patient: PatientModel):
                     "AJCC8 Stage",
                     "ATA Recurrence Risk",
                     "Cumulative Iodine Dose",
-                    "Levothyrox Dose"
+                    "Levothyrox Dose",
+                    "user"
                 ],
 
                 "Value": [
@@ -207,7 +208,8 @@ def diagnosis(patient: PatientModel):
                     patient.ajcc8,
                     patient.risque_ata,
                     patient.dose_iode,
-                    f"{patient.levothyrox:.1f} µg"
+                    f"{patient.levothyrox:.1f} µg",
+                    st.user.name
                 ]
             })
             summary["Value"] = summary["Value"].astype(str)
