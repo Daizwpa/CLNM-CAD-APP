@@ -1,7 +1,7 @@
 
 import streamlit as st
-from Core.Model import PatientModel
-from Core.Controller import diagnosis
+from streamlit.Core.Model import PatientModel
+from streamlit.Core.Controller import diagnosis
 
 st.set_page_config(initial_sidebar_state="collapsed")
 
