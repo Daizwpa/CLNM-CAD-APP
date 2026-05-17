@@ -58,16 +58,6 @@ def diagnosis(patient: PatientModel):
 
     with st.chat_message("assistant"):
 
-        st.write(
-            
-                """
-                👋
-                <span style="color:#00FF00">
-                The clinical analysis has been completed successfully.
-                </span>
-                """
-            
-        )
 
         st.markdown("""
         ## Postoperative Recurrent Lymph Node Metastasis Prediction Report
@@ -184,7 +174,8 @@ def diagnosis(patient: PatientModel):
                     "ATA Recurrence Risk",
                     "Cumulative Iodine Dose",
                     "Levothyrox Dose",
-                    "user"
+                    "user",
+                    "Email"
                 ],
 
                 "Value": [
@@ -204,7 +195,8 @@ def diagnosis(patient: PatientModel):
                     patient.risque_ata,
                     patient.dose_iode,
                     f"{patient.levothyrox:.1f} µg",
-                    st.user.name
+                    st.user.name,
+                    st.user.email
                 ]
             })
             summary["Value"] = summary["Value"].astype(str)
