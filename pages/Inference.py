@@ -21,7 +21,7 @@ def page():
     page_title="Thyroid Cancer Prediction",
     layout="wide"
     )
-    st.title("🤖 Explainable Computer-aided diangosis of postoperative recurrent lymph node metastasis of Thyroid cancer (SRP)", text_alignment="left")
+    st.title("🤖 Explainable Computer-aided diangosis of postoperative recurrent lymph node metastasis of Thyroid cancer (SRP-DZ)", text_alignment="left")
     st.divider()
 
     st.markdown("### 📥 Enter patient clinical information:")

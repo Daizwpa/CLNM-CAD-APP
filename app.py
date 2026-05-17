@@ -30,7 +30,7 @@ st.markdown("""
 
 def main():
     st.set_page_config(initial_sidebar_state="collapsed")
-    st.title("🔐 Welcome to SRP Platform")
+    st.title("🔐 Welcome to SRP-DZ Platform")
     st.write("### For Diangosis postoperative recurrent lymph node metastasis of Thyroid cancer")
     st.write("Please sign in with your corporate or personal account.")
 
