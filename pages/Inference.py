@@ -21,7 +21,7 @@ def page():
     page_title="Thyroid Cancer Prediction",
     layout="wide"
     )
-    st.title("🤖 Explainable Computer-aided diangosis of postoperative recurrent lymph node metastasis of Thyroid cancer", text_alignment="left")
+    st.title("🤖 Explainable Computer-aided diangosis of postoperative recurrent lymph node metastasis of Thyroid cancer (SRP)", text_alignment="left")
     st.divider()
 
     st.markdown("### 📥 Enter patient clinical information:")
@@ -119,14 +119,13 @@ def page():
             "Histology type",
             [
                 "Papillary",
-                "Medullary",
                 "Anaplastic",
                 "Follicular",
-                "Poorly differentiated"
+                "Other"
             ],
             index=[
                 "Papillary",
-                "Medullary",
+                "Anaplastic",
                 "Follicular",
                 "Other"
             ].index(patient.histology_type),

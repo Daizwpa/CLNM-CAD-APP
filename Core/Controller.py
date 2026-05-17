@@ -61,8 +61,10 @@ def diagnosis(patient: PatientModel):
         st.write(
             
                 """
-                Hello 👋
+                👋
+                <span style="color:#00FF00">
                 The clinical analysis has been completed successfully.
+                </span>
                 """
             
         )
@@ -71,14 +73,7 @@ def diagnosis(patient: PatientModel):
         ## Postoperative Recurrent Lymph Node Metastasis Prediction Report
         """)
 
-        st.write(
-                f"""
-                A predictive analysis was generated for a patient
-                aged {patient.age} years using the trained
-                machine learning model.
-                """
-            
-        )
+
 
         st.divider()
 
@@ -166,7 +161,7 @@ def diagnosis(patient: PatientModel):
         )
 
         with st.expander(
-            "Patient Clinical Summary"
+            "Patient Clinical Summary (if you want to save patient data. Please click on save button below)"
         ):
 
             summary = pd.DataFrame({
